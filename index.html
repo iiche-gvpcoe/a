@@ -1,9 +1,103 @@
 <!doctype html>
 <html>
-  <head>
-    <title>IIChE-GVPCOE(A)</title>
-  </head>
-  <body>
-    <h1>Work Under Progress</h1>
-  </body>
+    <head>
+      <title>IIChE-GVPCE</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <div class="title">
+                <a href="https://www.gvpce.ac.in/">
+                <img src="images/GVP_logo.svg" alt="IIChE Logo"></a>
+                <div class="heading">
+                    <h1>GAYATRI VIDYA PARISHAD COLLEGE OF ENGINEERING</h1>
+                    <h3>Department of Chemical Engineering</h3>
+                    <h2>IIChE-GVPCE(A) STUDENT CHAPTER</h2>
+                    <p>Affliated to <br/> Waltair Regional Centre</p>
+                </div>
+                <a href="index.html">
+                <img src="images/IIChE_Logo.svg" alt="IIChE Logo"></a>
+
+            </div>
+        </header>
+        <nav>
+            <div class="links">
+                <a href="index.html">Home</a>
+                <a href="join_iiche.html">Join IIChE</a>
+                <a href="#aboutus">About IIChE</a>
+                <a href="events_timeline.html">Events Timeline</a>
+                <a href="blog">Blog</a>
+                <a href="office_bearers.html">Office Bearers</a>
+                <a href="SM_DB.html">SM's Database</a>
+                <a href="contact_us.html">Contact Us</a>
+            </div>
+            <div class="hamburger">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
+        </nav>
+        <main>
+            <section>
+
+            </section>
+            <section class="about_us" id="aboutus">
+                <div>
+                    <h3>ABOUT US</h3><hr>
+                </div>
+                <div>
+                    <p></p>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="footer_1">
+                
+                <div class="navinfooter">
+                    <h4>IIChE GVPCE(A)</h4>
+                    <a href="index.html">Home</a>
+                    <a href="join_iiche.html">Join IIChE</a>
+                    <a href="about_iiche.html">About IIChE</a>
+                    <a href="office_bearers.html">Office Bearers</a>
+                    <a href="SM_DB.html">SM's Database</a>
+                </div>
+                <div class="initiatives">                
+                    <h4>THE INITIATIVES</h4>
+                    <a href="news_letter.html">NEWS Letter</a>
+                    <a href="ozone.html">OZONE</a>
+                    <a href="events_timeline.html">Events Timeline</a>
+                    <a href="blog">Blog</a>
+                </div>
+                <div class="eventsTimeline">
+                    <h4>EVENT'S TIMELINE</h4>
+                    <a href="2021.html">2021-22</a>
+                    <a href="2021.html">2021-22</a>
+                    <a href="2021.html">2021-22</a>
+                </div>
+            </div>
+            <div class="social">
+
+            </div>
+            <div class="copyright">
+
+            </div>
+        </footer>
+    </body>
+    <script>
+        window.addEventListener("scroll", function() {
+            let nav = document.getElementsByTagName('nav')[0];
+            let header = document.getElementsByTagName("Header")[0];
+
+            if (window.scrollY > header.scrollHeight) {
+                console.log(header.scrollHeight)
+                nav.classList.add("scrolled");
+            } else {
+                nav.classList.remove("scrolled");
+            }
+        })
+    </Script>
 </html>
