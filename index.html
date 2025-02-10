@@ -12,7 +12,7 @@
     <body>
         <header>
             <div class="title">
-                <a href="https://www.gvpce.ac.in/">
+                <a href="https://www.gvpce.ac.in/" target="_blank">
                 <img src="images/GVP_Logo.svg" alt="GVP Logo"></a>
                 <div class="heading">
                     <h1>GAYATRI VIDYA PARISHAD COLLEGE OF ENGINEERING</h1>
@@ -30,7 +30,18 @@
                 <a href="index.html">Home</a>
                 <a href="join_iiche.html">Join IIChE</a>
                 <a href="#aboutus">About IIChE</a>
-                <a href="events_timeline.html">Events Timeline</a>
+                <div class="nav_events">
+                    <a class="block" href="">Events Timeline</a>
+                    <div class="eventLinks">
+                        <a href="events.html?year=2016-17">2016-17</a>
+                        <a href="events.html?year=2016-17">2017-18</a>
+                        <a href="events.html?year=2016-17">2018-19</a>
+                        <a href="events.html?year=2016-17">2019-20</a>
+                        <a href="events.html?year=2016-17">2020-21</a>
+                        <a href="events.html?year=2016-17">2021-22</a>
+                        <a href="events.html?year=2016-17">2022-23</a>
+                    </div>
+                </div>
                 <a href="blog">Blog</a>
                 <a href="office_bearers.html">Office Bearers</a>
                 <a href="SM_DB.html">SM's Database</a>
@@ -87,18 +98,7 @@
 
             </div>
         </footer>
-    </body>
-    <script>
-        window.addEventListener("scroll", function() {
-            let nav = document.getElementsByTagName('nav')[0];
-            let header = document.getElementsByTagName("Header")[0];
 
-            if (window.scrollY > header.scrollHeight) {
-                console.log(header.scrollHeight)
-                nav.classList.add("scrolled");
-            } else {
-                nav.classList.remove("scrolled");
-            }
-        })
-    </Script>
+        <script src="main.js"></script>
+    </body>
 </html>
