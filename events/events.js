@@ -9,7 +9,7 @@ if(year) {
     fetch(`events/${year}.html`)
         .then(response => {
             if (!response.ok) throw new Error('Section not found');
-            // return response.text();
+            return response.text();
         })
         .then(data => {
             document.getElementById('events_content').innerHTML = data;
