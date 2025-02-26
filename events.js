@@ -7,7 +7,7 @@ async function csv_Dict(path) {
     try {
         const response = await fetch(path);
         const csvText = await response.text();
-        
+
         const rows = csvText.trim().split('\n');
         const headers = rows[0].split(',').map(header => header.trim());
 
@@ -65,7 +65,7 @@ async function EventLoading() {
             toHomediv.innerHTML = `
                 <a href="index.html">Home</a>
                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                <a href="events.html?academic-year=${year}">${year}'s events</a>`
+                <a href="events.html?academic-year=${year}">${year}'s events</a>`;
             eventCards.className = "event_cards";
             contentDiv.appendChild(toHomediv);
             contentDiv.appendChild(eventCards);
@@ -101,19 +101,17 @@ async function EventLoading() {
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                     <a href="events.html?academic-year=${year}">${year}'s events</a>
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    <a href="events.html?academic-year=${year}&held-on=${date}">${eventDetails.name} held on ${date.replace("_", " to ")}</a>`
+                    <a href="events.html?academic-year=${year}&held-on=${date}">${eventDetails.name} held on ${date.replace("_", " to ")}</a>`;
                 eventTitle.innerHTML = `
-                    <h2 class=eventPageTitle>${eventDetails.name}</h2>`
+                    <h2 class="eventPageTitle">${eventDetails.name}</h2>`;
                 contentDiv.appendChild(toYearsEvents);
                 contentDiv.appendChild(eventTitle);
-                photoLocations = photosStrings(eventDetails.groupPhotos, eventDetails.photos, year, date);
+                const photoLocations = photosStrings(eventDetails.groupPhotos, eventDetails.photos, year, date);
                 photoLocations.forEach(photoLocation => {
-                    eventGallery.innerHTML += `<img src="${photoLocation}" alt="${photoLocation.split("/").pop()}"`
-                }
-                
-            )
-
-            };
+                    eventGallery.innerHTML += `<img src="${photoLocation}" alt="${photoLocation.split("/").pop()}">`;
+                });
+                contentDiv.appendChild(eventGallery);
+            }
         }
     } catch (error) {
         console.error('Error:', error);
