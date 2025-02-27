@@ -1,7 +1,7 @@
 function GetQueryParam(param_name) {
     const urlParams = new URLSearchParams(window.location.search);
     return urlParams.get(param_name)?.replace(/["']/g, "");
-}
+};
 
 async function csv_Dict(path) {
     try {
@@ -24,22 +24,27 @@ async function csv_Dict(path) {
         console.error('Error fetching CSV:', error);
         return []; // Return an empty array in case of error
     }
-}
+};
 
-function photosStrings(groupPhotosCount, photosCount, eventYear, eventDate) {
+function PhotosStrings(groupPhotosCount, photosCount, eventYear, eventDate) {
     const photoLocations = [];
-    for (let currentPhoto = 1; currentPhoto <= groupPhotosCount; currentPhoto++) {
-        const photoLocation = `events/${eventYear}/${eventDate}/groupPhoto-${currentPhoto}(${eventDate}).jpg`;
+    if (groupPhotosCount === 0 && photosCount === 0) {
+        const photoLocation = `events/${eventYear}/${eventDate}/demo.svg`;
         photoLocations.push(photoLocation);
-    }
-    for (let currentPhoto = 1; currentPhoto <= photosCount; currentPhoto++) {
-        const photoLocation = `events/${eventYear}/${eventDate}/photo-${currentPhoto}(${eventDate}).jpg`;
-        photoLocations.push(photoLocation);
-    }
+    } else {
+        for (let currentPhoto = 1; currentPhoto <= groupPhotosCount; currentPhoto++) {
+            const photoLocation = `events/${eventYear}/${eventDate}/groupPhoto-${currentPhoto}(${eventDate}).jpg`;
+            photoLocations.push(photoLocation);
+        }
+        for (let currentPhoto = 1; currentPhoto <= photosCount; currentPhoto++) {
+            const photoLocation = `events/${eventYear}/${eventDate}/photo-${currentPhoto}(${eventDate}).jpg`;
+            photoLocations.push(photoLocation);
+        };
+    };
     return photoLocations;
-}
+};
 
-async function EventLoading() {
+async function EventRenderer() {
     const year = GetQueryParam('academic-year');
     const date = GetQueryParam('held-on');
     const contentDiv = document.getElementById("events_content");
@@ -57,6 +62,7 @@ async function EventLoading() {
         }
 
         const yearEventsData = await csv_Dict(`events/${year}/events.csv`);
+        const chronolizedEventsData = ChronolizeEvents(yearEventsData);
 
         if (!date) {
             document.title = `Events of ${year}`;
@@ -70,28 +76,43 @@ async function EventLoading() {
             contentDiv.appendChild(toHomediv);
             contentDiv.appendChild(eventCards);
 
-            yearEventsData.forEach(event => {
+            chronolizedEventsData.forEach(event => {
                 const eventCard = document.createElement('div');
                 eventCard.className = "event_card";
                 eventCard.id = event.date;
-                eventCard.innerHTML = `
+                if (event.date.length > 8) {
+                    eventCard.innerHTML = `
                     <div class="image">
                         <img src="events/${year}/${event.date}/groupPhoto-1(${event.date}).jpg" alt="${event.name}">
                     </div>
                     <div class="event_title">
                         <h3>${event.name}</h3>
+                        <p>held from ${event.date.replace("_", " to ")}</p>
                     </div>
                     <div class="link">
                         <a href="events.html?academic-year=${year}&held-on=${event.date}">Click Here!</a>
                     </div>`;
+                } else {
+                    eventCard.innerHTML = `
+                    <div class="image">
+                        <img src="events/${year}/${event.date}/groupPhoto-1(${event.date}).jpg" alt="${event.name}">
+                    </div>
+                    <div class="event_title">
+                        <h3>${event.name}</h3>
+                        <p>held on ${event.date}</p>
+                    </div>
+                    <div class="link">
+                        <a href="events.html?academic-year=${year}&held-on=${event.date}">Click Here!</a>
+                    </div>`;
+                };
                 eventCards.appendChild(eventCard);
             });
         } else {
-            const eventDates = yearEventsData.map(entry => entry.date);
+            const eventDates = chronolizedEventsData.map(entry => entry.date);
             if (!eventDates.includes(date)) {
                 contentDiv.innerHTML = `<h3>Searched year doesn't have any event held on ${date}.</h3>`;
             } else {
-                const eventDetails = yearEventsData.find(row => row.date === date);
+                const eventDetails = chronolizedEventsData.find(row => row.date === date);
                 document.title = eventDetails.name;
                 const toYearsEvents = document.createElement("div");
                 const eventTitle = document.createElement("div");
@@ -106,7 +127,7 @@ async function EventLoading() {
                     <h2 class="eventPageTitle">${eventDetails.name}</h2>`;
                 contentDiv.appendChild(toYearsEvents);
                 contentDiv.appendChild(eventTitle);
-                const photoLocations = photosStrings(eventDetails.groupPhotos, eventDetails.photos, year, date);
+                const photoLocations = PhotosStrings(eventDetails.groupPhotos, eventDetails.photos, year, date);
                 photoLocations.forEach(photoLocation => {
                     eventGallery.innerHTML += `<img src="${photoLocation}" alt="${photoLocation.split("/").pop()}">`;
                 });
@@ -117,4 +138,39 @@ async function EventLoading() {
         console.error('Error:', error);
         contentDiv.innerHTML += `<p>${error.message}</p>`;
     }
+};
+
+
+function ChronolizeEvents(dict) {
+    var ChronolizeEvents = [];
+    var rectifiedData = [];
+    dict.forEach(row => {row.extraDate = "0";});
+
+    dict.forEach(row => {
+        if (row.date.includes("_")) {
+            row.extraDate = row.date.split("_")[0];
+            row.date = row.date.split("_")[1];
+        };
+        row.date = `20${row.date.split("-").reverse().join("-")}`;
+        rectifiedData.push(row);
+    });
+    rectifiedData.sort((a, b) => {
+        let dateA = new Date(a.date);
+        let dateB = new Date(b.date);
+        return dateB - dateA;
+    });
+
+    rectifiedData.forEach(row => {
+        row.date = row.date.slice(2, row.date.length);
+        row.date = row.date.split("-").reverse().join("-");
+        if (row.extraDate !== "0") {
+            row.date = `${row.extraDate}_${row.date}`;
+        }
+        ChronolizeEvents.push(row);
+    });
+
+    ChronolizeEvents.forEach(row => {
+        delete row.extraDate;
+    })
+    return ChronolizeEvents;
 };
