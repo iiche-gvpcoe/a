@@ -26,10 +26,44 @@ async function csv_Dict(path) {
     }
 };
 
+function ChronolizeEvents(dict) {
+    var ChronolizeEvents = [];
+    var rectifiedData = [];
+    dict.forEach(row => {row.extraDate = "0";});
+
+    dict.forEach(row => {
+        if (row.date.includes("_")) {
+            row.extraDate = row.date.split("_")[0];
+            row.date = row.date.split("_")[1];
+        };
+        row.date = `20${row.date.split("-").reverse().join("-")}`;
+        rectifiedData.push(row);
+    });
+    rectifiedData.sort((a, b) => {
+        let dateA = new Date(a.date);
+        let dateB = new Date(b.date);
+        return dateB - dateA;
+    });
+
+    rectifiedData.forEach(row => {
+        row.date = row.date.slice(2, row.date.length);
+        row.date = row.date.split("-").reverse().join("-");
+        if (row.extraDate !== "0") {
+            row.date = `${row.extraDate}_${row.date}`;
+        }
+        ChronolizeEvents.push(row);
+    });
+
+    ChronolizeEvents.forEach(row => {
+        delete row.extraDate;
+    })
+    return ChronolizeEvents;
+};
+
 function PhotosStrings(groupPhotosCount, photosCount, eventYear, eventDate) {
     const photoLocations = [];
     if (groupPhotosCount === 0 && photosCount === 0) {
-        const photoLocation = `events/${eventYear}/${eventDate}/demo.svg`;
+        const photoLocation = "images/IIChE_logo.svg";
         photoLocations.push(photoLocation);
     } else {
         for (let currentPhoto = 1; currentPhoto <= groupPhotosCount; currentPhoto++) {
@@ -87,7 +121,7 @@ async function EventRenderer() {
                     </div>
                     <div class="event_title">
                         <h3>${event.name}</h3>
-                        <p>held from ${event.date.replace("_", " to ")}</p>
+                        <p>(held from ${event.date.replace("_", " to ")})</p>
                     </div>
                     <div class="link">
                         <a href="events.html?academic-year=${year}&held-on=${event.date}">Click Here!</a>
@@ -99,7 +133,7 @@ async function EventRenderer() {
                     </div>
                     <div class="event_title">
                         <h3>${event.name}</h3>
-                        <p>held on ${event.date}</p>
+                        <p>(held on ${event.date})</p>
                     </div>
                     <div class="link">
                         <a href="events.html?academic-year=${year}&held-on=${event.date}">Click Here!</a>
@@ -138,39 +172,4 @@ async function EventRenderer() {
         console.error('Error:', error);
         contentDiv.innerHTML += `<p>${error.message}</p>`;
     }
-};
-
-
-function ChronolizeEvents(dict) {
-    var ChronolizeEvents = [];
-    var rectifiedData = [];
-    dict.forEach(row => {row.extraDate = "0";});
-
-    dict.forEach(row => {
-        if (row.date.includes("_")) {
-            row.extraDate = row.date.split("_")[0];
-            row.date = row.date.split("_")[1];
-        };
-        row.date = `20${row.date.split("-").reverse().join("-")}`;
-        rectifiedData.push(row);
-    });
-    rectifiedData.sort((a, b) => {
-        let dateA = new Date(a.date);
-        let dateB = new Date(b.date);
-        return dateB - dateA;
-    });
-
-    rectifiedData.forEach(row => {
-        row.date = row.date.slice(2, row.date.length);
-        row.date = row.date.split("-").reverse().join("-");
-        if (row.extraDate !== "0") {
-            row.date = `${row.extraDate}_${row.date}`;
-        }
-        ChronolizeEvents.push(row);
-    });
-
-    ChronolizeEvents.forEach(row => {
-        delete row.extraDate;
-    })
-    return ChronolizeEvents;
 };

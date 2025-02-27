@@ -1,3 +1,55 @@
+* {
+    z-index: 0;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+a {
+	text-decoration: none;
+}
+html {
+    scroll-behavior: smooth;
+}
+
 main {
-	background-color: beige;
+	background-color: white;
+}
+.event_cards {
+	display: flex;
+	flex-direction: column;
+	max-width: 100vw;
+}
+.event_card {
+	background-color: black;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	max-width: 25vw;
+	margin: 2rem 4rem;
+	border-radius: 3rem;
+}
+.event_card h3, .event_card p, .event_card a {
+	color: white;
+}
+.event_card .event_title {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+	padding-bottom: 0;
+}
+.event_card .event_title h3 {
+	text-align: center;
+}
+.event_card .link {
+	padding: 1rem;
+	padding-top: 0.5rem;
+
+}
+img {
+	aspect-ratio: auto;
+	max-width: 50vw;
 }

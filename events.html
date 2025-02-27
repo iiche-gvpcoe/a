@@ -17,6 +17,13 @@
 <main id="events_content">
 </main>
 <script src="events.js"></script>
-<script>EventRenderer();</script>
+<script>
+    EventRenderer();
+    var link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.type = 'text/css';
+    link.href = 'events.css';
+    document.head.appendChild(link);
+</script>
 </body>
 </html>
