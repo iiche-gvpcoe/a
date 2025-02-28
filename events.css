@@ -11,45 +11,83 @@ a {
 html {
     scroll-behavior: smooth;
 }
+.toHome {
+	margin-top: 1.5rem;
+	padding-left: 2vw;
+}
+.toHome a {
+	color: black;
+}
+.eventCards {
+	margin-top: 5vh;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	place-items: center;
+	gap: 7vh 0;
+	padding-bottom: 10dvh;
 
-main {
-	background-color: white;
 }
-.event_cards {
-	display: flex;
-	flex-direction: column;
-	max-width: 100vw;
-}
-.event_card {
-	background-color: black;
+.eventCard {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	max-width: 25vw;
-	margin: 2rem 4rem;
-	border-radius: 3rem;
+	text-align: center;
+	width: 40vw;
+	max-width: 45vw;
+	height: calc(.625*45vw);
+	margin-bottom: 1rem;
 }
-.event_card h3, .event_card p, .event_card a {
-	color: white;
+.eventImage {
+	display:flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 35vw;
+	height: calc(.5625*35vw);
+	border: 2px solid rgb(0, 0, 0);
+	border-radius: 1.5rem;
+	margin: .5rem;
 }
-.event_card .event_title {
+.eventImage img {
+	width: 100%;
+	height: 100%;
+	object-fit: fill;
+	border-radius: 1.5rem;
+}
+.eventBG {
+	z-index: -2;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: .5rem;
+	width: 35vw;
 	padding: 1rem;
-	padding-bottom: 0;
+	margin-top: calc(-.2*40vw);
+	padding-top: calc(.2*40vw);
+	border-radius: 2rem;
+	background-color: black;
 }
-.event_card .event_title h3 {
+.eventTitle {
 	text-align: center;
 }
-.event_card .link {
-	padding: 1rem;
-	padding-top: 0.5rem;
-
+.eventTitle h4 {
+	color: white;
+	font-size: medium;
 }
-img {
-	aspect-ratio: auto;
-	max-width: 50vw;
+.eventTitle p {
+	color: white;
+	font-size: small;
+}
+.eventLink {
+	width: fit-content;
+	background-color: white;
+	padding: 0.25rem 0.5rem;
+	border-radius: 2rem;
+	text-align: center;
+}
+.eventLink a{
+	color: black;
+	font-size: medium;
 }

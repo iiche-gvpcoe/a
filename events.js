@@ -102,41 +102,46 @@ async function EventRenderer() {
             document.title = `Events of ${year}`;
             const eventCards = document.createElement('div');
             const toHomediv = document.createElement('div');
+            toHomediv.className = "toHome";
             toHomediv.innerHTML = `
                 <a href="index.html">Home</a>
                 <i class="fa fa-chevron-right" aria-hidden="true"></i>
                 <a href="events.html?academic-year=${year}">${year}'s events</a>`;
-            eventCards.className = "event_cards";
+            eventCards.className = "eventCards";
             contentDiv.appendChild(toHomediv);
             contentDiv.appendChild(eventCards);
 
             chronolizedEventsData.forEach(event => {
                 const eventCard = document.createElement('div');
-                eventCard.className = "event_card";
+                eventCard.className = "eventCard";
                 eventCard.id = event.date;
                 if (event.date.length > 8) {
                     eventCard.innerHTML = `
-                    <div class="image">
+                    <div class="eventImage">
                         <img src="events/${year}/${event.date}/groupPhoto-1(${event.date}).jpg" alt="${event.name}">
                     </div>
-                    <div class="event_title">
-                        <h3>${event.name}</h3>
-                        <p>(held from ${event.date.replace("_", " to ")})</p>
-                    </div>
-                    <div class="link">
-                        <a href="events.html?academic-year=${year}&held-on=${event.date}">Click Here!</a>
+                    <div class="eventBG">
+                        <div class="eventTitle">
+                            <h4>${event.name}</h4>
+                            <p>(held from ${event.date.replace("_", " to ")})</p>
+                        </div>
+                        <div class="eventLink">
+                            <a href="events.html?academic-year=${year}&held-on=${event.date}">Click Here!</a>
+                        </div>
                     </div>`;
                 } else {
                     eventCard.innerHTML = `
-                    <div class="image">
-                        <img src="events/${year}/${event.date}/groupPhoto-1(${event.date}).jpg" alt="${event.name}">
-                    </div>
-                    <div class="event_title">
-                        <h3>${event.name}</h3>
-                        <p>(held on ${event.date})</p>
-                    </div>
-                    <div class="link">
-                        <a href="events.html?academic-year=${year}&held-on=${event.date}">Click Here!</a>
+                        <div class="eventImage">
+                            <img src="events/${year}/${event.date}/groupPhoto-1(${event.date}).jpg" alt="${event.name}">
+                        </div>
+                    <div class="eventBG">
+                        <div class="eventTitle">
+                            <h4>${event.name}</h4>
+                            <p>(held on ${event.date})</p>
+                        </div>
+                        <div class="eventLink">
+                            <a href="events.html?academic-year=${year}&held-on=${event.date}">Click Here!</a>
+                        </div>
                     </div>`;
                 };
                 eventCards.appendChild(eventCard);
@@ -149,18 +154,22 @@ async function EventRenderer() {
                 const eventDetails = chronolizedEventsData.find(row => row.date === date);
                 document.title = eventDetails.name;
                 const toYearsEvents = document.createElement("div");
-                const eventTitle = document.createElement("div");
+                const eventPageTitle = document.createElement("div");
                 const eventGallery = document.createElement("div");
+                toYearsEvents.className = "toYearsEvents";
+                eventPageTitle.className = "eventPageTitle";
+                eventGallery.className = "eventGallery";
+
                 toYearsEvents.innerHTML = `
-                    <a href="index.html">Home</a>
+                    <a href="index.html">Home</a>&ensp;
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    <a href="events.html?academic-year=${year}">${year}'s events</a>
+                    <a href="events.html?academic-year=${year}">${year}'s Events</a>
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                     <a href="events.html?academic-year=${year}&held-on=${date}">${eventDetails.name} held on ${date.replace("_", " to ")}</a>`;
-                eventTitle.innerHTML = `
+                eventPageTitle.innerHTML = `
                     <h2 class="eventPageTitle">${eventDetails.name}</h2>`;
                 contentDiv.appendChild(toYearsEvents);
-                contentDiv.appendChild(eventTitle);
+                contentDiv.appendChild(eventPageTitle);
                 const photoLocations = PhotosStrings(eventDetails.groupPhotos, eventDetails.photos, year, date);
                 photoLocations.forEach(photoLocation => {
                     eventGallery.innerHTML += `<img src="${photoLocation}" alt="${photoLocation.split("/").pop()}">`;
