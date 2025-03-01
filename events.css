@@ -11,6 +11,24 @@ a {
 html {
     scroll-behavior: smooth;
 }
+body.eventsPage {
+	position: relative;
+}
+body.eventsPage::before {
+	content: "";
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url(images/IIChE_Logo.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    background-size: 35%;
+    opacity: 0.5;
+    z-index: -1;
+}
 .toHome {
 	margin-top: 1.5rem;
 	padding-left: 2vw;
@@ -91,3 +109,49 @@ html {
 	color: black;
 	font-size: medium;
 }
+.toYearsEvents {
+	margin-top: 1.5rem;
+	padding-left: 2vw;
+}
+.toYearsEvents a {
+	color: black;
+}
+.eventPageTitle {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+.eventPageTitleSub {
+	margin-top: 1.5rem;
+	text-align: center;
+	background-color: black;
+	width: fit-content;
+	padding: 1rem 2rem;
+	border-radius: 4rem;
+}
+.eventPageTitle h2 {
+	font-weight: normal;
+	color: white;
+}
+.eventPageTitle p {
+	color: White;
+}
+.eventGallery {
+	margin-top: 1.5rem;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+  }
+  
+  .eventGallery img.groupPhoto {
+	max-width: 85vw;
+	margin: 0.5rem;
+  }
+  
+  .eventGallery img.photo {
+	max-width: 40vw;
+	margin: 0.5rem;
+  }
+  

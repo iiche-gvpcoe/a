@@ -100,13 +100,15 @@ async function EventRenderer() {
 
         if (!date) {
             document.title = `Events of ${year}`;
+            const body = document.getElementsByTagName("body")[0];
+            body.className = "eventsPage";
             const eventCards = document.createElement('div');
             const toHomediv = document.createElement('div');
             toHomediv.className = "toHome";
             toHomediv.innerHTML = `
-                <a href="index.html">Home</a>
-                <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                <a href="events.html?academic-year=${year}">${year}'s events</a>`;
+                <a href="index.html">Home </a>
+                <i class="fa fa-chevron-right"></i>
+                <a href="events.html?academic-year=${year}"> ${year}'s Events</a>`;
             eventCards.className = "eventCards";
             contentDiv.appendChild(toHomediv);
             contentDiv.appendChild(eventCards);
@@ -155,24 +157,51 @@ async function EventRenderer() {
                 document.title = eventDetails.name;
                 const toYearsEvents = document.createElement("div");
                 const eventPageTitle = document.createElement("div");
+                const eventPageTitleSub = document.createElement("div");
                 const eventGallery = document.createElement("div");
                 toYearsEvents.className = "toYearsEvents";
                 eventPageTitle.className = "eventPageTitle";
+                eventPageTitleSub.className = "eventPageTitleSub";
                 eventGallery.className = "eventGallery";
-
-                toYearsEvents.innerHTML = `
-                    <a href="index.html">Home</a>&ensp;
+                eventPageTitle.appendChild(eventPageTitleSub);
+                
+                if (date.includes("_")) {
+                    toYearsEvents.innerHTML = `
+                        <a href="index.html">Home</a>
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        <a href="events.html?academic-year=${year}">${year}'s Events</a>
+                        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                        <a href="events.html?academic-year=${year}&held-on=${date}">${eventDetails.name}</a>`;
+                    eventPageTitleSub.innerHTML = `
+                        <h2>${eventDetails.name.toUpperCase()}</h2>
+                        <p>held from ${date.replace("_", " to ")}`;
+                } else {
+                    toYearsEvents.innerHTML = `
+                    <a href="index.html">Home</a>
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
                     <a href="events.html?academic-year=${year}">${year}'s Events</a>
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    <a href="events.html?academic-year=${year}&held-on=${date}">${eventDetails.name} held on ${date.replace("_", " to ")}</a>`;
-                eventPageTitle.innerHTML = `
-                    <h2 class="eventPageTitle">${eventDetails.name}</h2>`;
+                    <a href="events.html?academic-year=${year}&held-on=${date}">${eventDetails.name}</a>`;
+                    eventPageTitleSub.innerHTML = `
+                    <h2>${eventDetails.name.toUpperCase()}</h2>
+                    <p>held on ${date}`;
+                }
                 contentDiv.appendChild(toYearsEvents);
                 contentDiv.appendChild(eventPageTitle);
                 const photoLocations = PhotosStrings(eventDetails.groupPhotos, eventDetails.photos, year, date);
                 photoLocations.forEach(photoLocation => {
-                    eventGallery.innerHTML += `<img src="${photoLocation}" alt="${photoLocation.split("/").pop()}">`;
+                    if (photoLocation.includes("groupPhoto")) {
+                        eventGallery.innerHTML += `
+                        <a href="${photoLocation}" data-fancybox="gallery">
+                            <img class="groupPhoto" src="${photoLocation}" alt="${photoLocation.split("/").pop()}">
+                        </a>`;
+                    } else {
+                        eventGallery.innerHTML += `
+                        <a href="${photoLocation}" data-fancybox="gallery">
+                            <img class="photo" src="${photoLocation}" alt="${photoLocation.split("/").pop()}">
+                        </a>`;
+                    }
+                    
                 });
                 contentDiv.appendChild(eventGallery);
             }
