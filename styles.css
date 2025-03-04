@@ -16,40 +16,42 @@
 .title {
     min-width: 100%;
     background-color: white;
-    min-height: 10rem;
+    min-height: 7rem;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 0 2.5rem;
+    margin-bottom: .5rem;
 }
 .title .heading {
     margin: 0 2.5rem;
-    padding: .5rem;
+    padding: .25rem;
     text-align: center;
 }
 .title .heading h1 {
-    margin-top: .5rem;
-    font-size: 1.75rem;
+    margin-top: .25rem;
+    font-size: 1.6rem;
     font-weight: 600;
 }
 .title .heading h3 {
-    font-size: 1.125rem;
+    font-size: 1rem;
     font-weight: 400;
-    margin-bottom: .5rem;
+    margin-bottom: .25rem;
 }
 .title .heading h2 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: 600;
-    margin-bottom: .5rem;
+    margin-bottom: .25rem;
 }
 .title .heading p {
-    font-size: 1.025rem;
+    font-size: 1rem;
     font-weight: 400;
 }
 .title img {
-    max-width: 10vw;
+    max-width: 8.5vw;
 }
 nav {
+    z-index: 10;
     position: sticky;
     top: 0;
     min-width: 100%;
@@ -59,6 +61,7 @@ nav {
     align-items: center;
     background-color: black;
     color: white;
+    margin-bottom: .85rem;
 }
 .links {
     display: flex;
@@ -93,12 +96,93 @@ nav a{
     padding: 0.4rem 2.75rem;
     background-color: black;
 }
-
 section {
-    scroll-margin-top: 3rem;
+    padding: .5rem;
+    scroll-margin-top: 2.5rem;
     background-color: white;
-    height: 50rem;
+    height: auto;
     width: 100%;
+}
+.homeGallery {
+    display: flex;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+}
+.homeSlideShow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 1s ease;
+}
+.homeGallery img {
+    max-width: 70vw;
+    transition: opacity 1s ease;
+    border-radius: 2rem;
+}
+.homeGallery img.show {
+    opacity: 1;
+}
+.aboutUs {
+    padding: .75rem 5rem;
+}
+.aboutUs hr {
+    margin-top: -1px;
+    border: none;
+    height: 4px;
+    width: 7rem;
+    border-radius: 2px;
+    background-color: black;
+}
+.aboutUsHeading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: .75rem;
+}
+.aboutIIChE {
+    margin-bottom: 2.85rem;
+}
+.aboutIIChE hr {
+    margin-left: 5px;
+    width: 3rem;
+    margin-bottom: 1rem;
+}
+.aboutIIChE p{
+    padding: 0 1rem;
+    text-align: justify;
+    margin-bottom: .85rem;
+}
+.aboutIIChE a {
+    display: inline-block;
+    margin-left: 1rem;
+    color: white;
+    background-color: black;
+    padding: .75rem 1.5rem;
+    border-radius: 2rem;
+}
+.aboutIIChE a:hover {
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+    padding: calc(.75rem - 2px) calc(1.5rem - 2px);
+}
+.aboutIIChE-GVPCE {
+    margin-bottom: 1.5rem;
+}
+.aboutIIChE-GVPCE h2 {
+    margin-left: 0;
+}
+.aboutIIChE-GVPCE hr {
+    margin-left: 5px;
+    width: 9rem;
+    margin-bottom: 1rem;
+}
+.aboutIIChE-GVPCE p{
+    padding: 0 1rem;
+    text-align: justify;
+    margin-bottom: .85rem;
 }
 .footer_1 {
     display: flex;
