@@ -113,5 +113,39 @@ function PageRenderer(divID) {
             
         contentDiv.appendChild(yearElement);
         });
+    } else if (divID === "ozoneMagazines") {
+        const ozoneMagazinesData = [
+            {year:"2016-17", magazine Edition: "V.1", viewLink: "", downloadLink: ""},
+            {year:"2017-18", magazine Edition: "V.1", viewLink: "", downloadLink: ""}.
+            {year:"2018-19", magazine Edition: "V.1", viewLink: "", downloadLink: ""},
+            {year:"2019-20", magazine Edition: "V.1", viewLink: "", downloadLink: ""},
+            {year:"2020-21", magazine Edition: "V.1", viewLink: "", downloadLink: ""},
+            {year:"2021-22", magazine Edition: "V.1", viewLink: "", downloadLink: ""},
+            {year:"2022-23", magazine Edition: "V.1", viewLink: "", downloadLink: ""},
+];
+ozoneMagazinesData.forEach(ozoneMagazineData => {
+            const yearMagazine = document.createElement("div");
+            yearMagazine.id = `${ozoneMagazineData.year}`;
+            yearMagazine.className = "yearMagazine";
+            yearMagazine.innerHTML = ``;
+yearMagazine.innerHTML =  `
+                <div class="yearMagazine">
+                    <div class="magazineName"><h4>${ozoneMagazineData.magazineEdition}</h4></div>
+                <div class="magazineLinks">
+                    <a href="${ozoneMagazineData.viewLink}"><i class="fa fa-eye"></i></a>
+                    <a href="${ozoneMagazineData.downloadLink}"><i class="fa fa-download"></i></a>
+                </div>`
+            });
+            const yearElement = document.createElement("div");
+            yearElement.id = `${ozoneMagazineData.year}`;
+            yearElement.className = "yearMag";
+            yearElement.innerHTML = ``;
+            yearElement.innerHTML = `
+                <div class="yearMagTitle"><h3>${ozoneMagazineData.year}</h3></div>
+                </div>`;
+            yearElement.appendChild(yearMagazine);
+            
+        contentDiv.appendChild(yearElement);
+        });
     }
 }
