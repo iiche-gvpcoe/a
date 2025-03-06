@@ -108,7 +108,7 @@ async function EventRenderer() {
             toHomediv.innerHTML = `
                 <a href="index.html">Home </a>
                 <i class="fa fa-chevron-right"></i>
-                <a href="events.html?academic-year=${year}"> ${year}'s Events</a>`;
+                <a href="events?academic-year=${year}"> ${year}'s Events</a>`;
             eventCards.className = "eventCards";
             contentDiv.appendChild(toHomediv);
             contentDiv.appendChild(eventCards);
@@ -128,7 +128,7 @@ async function EventRenderer() {
                             <p>(held from ${event.date.replace("_", " to ")})</p>
                         </div>
                         <div class="eventLink">
-                            <a href="events.html?academic-year=${year}&held-on=${event.date}">Click Here!</a>
+                            <a href="events?academic-year=${year}&held-on=${event.date}">Click Here!</a>
                         </div>
                     </div>`;
                 } else {
@@ -142,7 +142,7 @@ async function EventRenderer() {
                             <p>(held on ${event.date})</p>
                         </div>
                         <div class="eventLink">
-                            <a href="events.html?academic-year=${year}&held-on=${event.date}">Click Here!</a>
+                            <a href="events?academic-year=${year}&held-on=${event.date}">Click Here!</a>
                         </div>
                     </div>`;
                 };
@@ -169,9 +169,9 @@ async function EventRenderer() {
                     toYearsEvents.innerHTML = `
                         <a href="index.html">Home</a>
                         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                        <a href="events.html?academic-year=${year}">${year}'s Events</a>
+                        <a href="events?academic-year=${year}">${year}'s Events</a>
                         <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                        <a href="events.html?academic-year=${year}&held-on=${date}">${eventDetails.name}</a>`;
+                        <a href="events?academic-year=${year}&held-on=${date}">${eventDetails.name}</a>`;
                     eventPageTitleSub.innerHTML = `
                         <h2>${eventDetails.name.toUpperCase()}</h2>
                         <p>held from ${date.replace("_", " to ")}`;
@@ -179,9 +179,9 @@ async function EventRenderer() {
                     toYearsEvents.innerHTML = `
                     <a href="index.html">Home</a>
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    <a href="events.html?academic-year=${year}">${year}'s Events</a>
+                    <a href="events?academic-year=${year}">${year}'s Events</a>
                     <i class="fa fa-chevron-right" aria-hidden="true"></i>
-                    <a href="events.html?academic-year=${year}&held-on=${date}">${eventDetails.name}</a>`;
+                    <a href="events?academic-year=${year}&held-on=${date}">${eventDetails.name}</a>`;
                     eventPageTitleSub.innerHTML = `
                     <h2>${eventDetails.name.toUpperCase()}</h2>
                     <p>held on ${date}`;

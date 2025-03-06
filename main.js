@@ -75,3 +75,64 @@ function NavLogoVisbility() {
         nav.style.marginBottom = "1rem";
     };
 };
+
+const NEWSLettersData = [
+    {year:"2016-17", letters: ["1.1", "1.2", "1.3"], viewLink: "", downloadLink:""},
+    {year:"2017-18", letters: ["2.1", "2.2", "2.3"], viewLink: "", downloadLink:""},
+    {year:"2018-19", letters: ["3.1", "3.2", "3.3"], viewLink: "", downloadLink:""},
+    {year:"2019-20", letters: ["4.1", "4.2", "4.3"], viewLink: "", downloadLink:""},
+    {year:"2020-21", letters: ["5.1", "5.2", "5.3"], viewLink: "", downloadLink:""},
+    {year:"2021-22", letters: ["6.1", "6.2"], viewLink: "", downloadLink:""},
+    {year:"2022-23", letters: ["7.1", ".2", "7.3"], viewLink: "", downloadLink:""},
+]
+function PageRenderer(divID) {
+    const contentDiv = document.getElementById(divID);
+    if (divID === "NEWSLetters") {
+        NEWSLettersData.forEach(NEWSLetterData => {
+            var letterData;
+            NEWSLetterData.letters.forEach(letter => {
+                letterData +=  `
+                <div class="yearLetter">
+                    <div class="letterName"><h4>${letter}</h4></div>
+                <div class="letterLinks">
+                    <a href="${NEWSLetterData.viewLink}"><i class="fa fa-eye"></i></a>
+                    <a href="${NEW}"><i class="fa fa-download"></i></a>
+                </div>
+        </div>
+                `
+            })
+            const NEWSData =`
+            <div class="year" id=${year}>
+                <div class="yearTitle"><h3>${year}</h3></div>
+            <div class="yearLetters">
+                <div class="yearLetter">
+                    <div class="letterName"><h4>v.1</h4></div>
+          <div class="letterLinks">
+        <a href="#"><i class="fa fa-eye"></i></a>
+        <a href="#"><i class="fa fa-download"></i></a>
+          </div>
+        </div>
+        <div class="yearLetter">
+          <div class="letterName">
+            <h4>v.2</h4>
+          </div>
+          <div class="letterLinks">
+        <a href="#"><i class="fa fa-eye"></i></a>
+        <a href="#"><i class="fa fa-download"></i></a>
+          </div>
+        </div>
+        <div class="yearLetter">
+          <div class="letterName">
+            <h4>v.2</h4>
+          </div>
+          <div class="letterLinks">
+        <a href="#"><i class="fa fa-eye"></i></a>
+        <a href="#"><i class="fa fa-download"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+            `;
+        });
+    };
+};

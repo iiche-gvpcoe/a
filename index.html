@@ -84,6 +84,9 @@
                     <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Our chapter also promotes the holistic development of students through various extracurricular activities, including sports events, cultural programs, and social gatherings. These activities foster teamwork, communication, and leadership skills while also creating a sense of community and camaraderie among the members. Networking events, which connect students with alumni and industry professionals, provide valuable mentorship opportunities, guiding students in their career choices and professional growth. Through these various initiatives, the IIChE-GVPCE Student Chapter not only helps students develop academically but also encourages them to take leadership roles, think innovatively, and stay motivated to contribute to the ever-evolving field of chemical engineering. By being a part of this chapter, students have access to a wealth of resources, guidance, and opportunities that will help shape them into successful professionals, equipped with the skills and knowledge to make a significant impact in the industry.</p>
                 </div>
             </section>
+            <section class="NEWSLetters" id="NEWSLetters">
+
+            </section>
         </main>
         <footer>
             <div class="footer_1">
@@ -98,7 +101,7 @@
                 </div>
                 <div class="initiatives">                
                     <h4>THE INITIATIVES</h4>
-                    <a href="news_letter.html">NEWS Letter</a>
+                    <a href="" id="NEWSLetterLink">NEWS Letter</a>
                     <a href="ozone.html">OZONE</a>
                     <a href="blog">Blog</a>
                 </div>
@@ -129,9 +132,9 @@
             {image:"groupPhoto-1,jpg", title:"This Events Photo-1", description:"flgnlfdl"},
             {image:"groupPhoto-1,jpg", title:"This Events Photo-1", description:"wrpotjal"}
             ];
-
             
-
+            const NEWSLetterLink = document.getElementById("NEWSLetterLink");
+            NEWSLetterLink.addEventListener("click", PageRenderer("NEWSLetters"))
         </script>
     </body>
 </html>
