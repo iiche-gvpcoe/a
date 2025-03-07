@@ -115,13 +115,13 @@ function PageRenderer(divID) {
         });
     } else if (divID === "ozoneMagazines") {
         const ozoneMagazinesData = [
-            {year:"2016-17", magazine Edition: "V.1", viewLink: "", downloadLink: ""},
-            {year:"2017-18", magazine Edition: "V.1", viewLink: "", downloadLink: ""}.
-            {year:"2018-19", magazine Edition: "V.1", viewLink: "", downloadLink: ""},
-            {year:"2019-20", magazine Edition: "V.1", viewLink: "", downloadLink: ""},
-            {year:"2020-21", magazine Edition: "V.1", viewLink: "", downloadLink: ""},
-            {year:"2021-22", magazine Edition: "V.1", viewLink: "", downloadLink: ""},
-            {year:"2022-23", magazine Edition: "V.1", viewLink: "", downloadLink: ""},
+            {year:"2016-17", magazineEdition: "V.1", viewLink: "", downloadLink: ""},
+            {year:"2017-18", magazineEdition: "V.1", viewLink: "", downloadLink: ""},
+            {year:"2018-19", magazineEdition: "V.1", viewLink: "", downloadLink: ""},
+            {year:"2019-20", magazineEdition: "V.1", viewLink: "", downloadLink: ""},
+            {year:"2020-21", magazineEdition: "V.1", viewLink: "", downloadLink: ""},
+            {year:"2021-22", magazineEdition: "V.1", viewLink: "", downloadLink: ""},
+            {year:"2022-23", magazineEdition: "V.1", viewLink: "", downloadLink: ""}
 ];
 ozoneMagazinesData.forEach(ozoneMagazineData => {
             const yearMagazine = document.createElement("div");
@@ -134,8 +134,7 @@ yearMagazine.innerHTML =  `
                 <div class="magazineLinks">
                     <a href="${ozoneMagazineData.viewLink}"><i class="fa fa-eye"></i></a>
                     <a href="${ozoneMagazineData.downloadLink}"><i class="fa fa-download"></i></a>
-                </div>`
-            });
+                </div>`;
             const yearElement = document.createElement("div");
             yearElement.id = `${ozoneMagazineData.year}`;
             yearElement.className = "yearMag";
