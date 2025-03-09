@@ -86,7 +86,7 @@ function PageRenderer(divID) {
             {year:"2019-20", letters: ["4.1", "4.2", "4.3"], viewLink: ["", "", ""], downloadLink:["", "", ""]},
             {year:"2020-21", letters: ["5.1", "5.2", "5.3"], viewLink: ["", "", ""], downloadLink:["", "", ""]},
             {year:"2021-22", letters: ["6.1", "6.2"], viewLink: ["", ""], downloadLink:["", ""]},
-            {year:"2022-23", letters: ["7.1", ".2", "7.3"], viewLink: ["", "", ""], downloadLink:["", "", ""]},
+            {year:"2022-23", letters: ["7.1", "7.2", "7.3"], viewLink: ["", "", ""], downloadLink:["", "", ""]},
         ];
         NEWSLettersData.forEach(NEWSLetterData => {
             const yearLetters = document.createElement("div");
@@ -115,36 +115,36 @@ function PageRenderer(divID) {
         });
     } else if (divID === "ozoneMagazines") {
         const ozoneMagazinesData = [
-            {year:"2016-17", magazineEdition: "V.1", viewLink: "", downloadLink: ""},
-            {year:"2017-18", magazineEdition: "V.1", viewLink: "", downloadLink: ""},
-            {year:"2018-19", magazineEdition: "V.1", viewLink: "", downloadLink: ""},
-            {year:"2019-20", magazineEdition: "V.1", viewLink: "", downloadLink: ""},
-            {year:"2020-21", magazineEdition: "V.1", viewLink: "", downloadLink: ""},
-            {year:"2021-22", magazineEdition: "V.1", viewLink: "", downloadLink: ""},
-            {year:"2022-23", magazineEdition: "V.1", viewLink: "", downloadLink: ""}
+            {year:"2019(JAN-JUNE)", magazineEdition: "Edition-1", viewLink: "", downloadLink: ""},
+            {year:"2019(JULY-DEC)", magazineEdition: "Edition-2", viewLink: "", downloadLink: ""},
+            {year:"2020(JAN-JUNE)", magazineEdition: "Edition-3", viewLink: "", downloadLink: ""},
+            {year:"2020(JULY-DEC)", magazineEdition: "Edition-4", viewLink: "", downloadLink: ""},
+            {year:"2021(JAN-JUNE)", magazineEdition: "Edition-5", viewLink: "", downloadLink: ""},
+            {year:"2021(JULY-DEC)", magazineEdition: "Edition-6", viewLink: "", downloadLink: ""},
+            {year:"2022(JAN-JUNE)", magazineEdition: "Edition-7", viewLink: "", downloadLink: ""},
+            {year:"2022(JULY-DEC)", magazineEdition: "Edition-8", viewLink: "", downloadLink: ""}
 ];
-ozoneMagazinesData.forEach(ozoneMagazineData => {
+        ozoneMagazinesData.forEach(ozoneMagazineData => {
             const yearMagazine = document.createElement("div");
-            yearMagazine.id = `${ozoneMagazineData.year}`;
-            yearMagazine.className = "yearMagazine";
+            yearMagazine.id = `${ozoneMagazineData.magazineEdition}`;
+            yearMagazine.className = "magazineDetails";
             yearMagazine.innerHTML = ``;
-yearMagazine.innerHTML =  `
-                <div class="yearMagazine">
-                    <div class="magazineName"><h4>${ozoneMagazineData.magazineEdition}</h4></div>
-                <div class="magazineLinks">
-                    <a href="${ozoneMagazineData.viewLink}"><i class="fa fa-eye"></i></a>
-                    <a href="${ozoneMagazineData.downloadLink}"><i class="fa fa-download"></i></a>
-                </div>`;
+            yearMagazine.innerHTML =  `
+                    <div class="magazineYearName"><h4>${ozoneMagazineData.year}</h4></div>
+                    <div class="magazineLinks">
+                        <a href="${ozoneMagazineData.viewLink}"><i class="fa fa-eye"></i></a>
+                        <a href="${ozoneMagazineData.downloadLink}"><i class="fa fa-download"></i></a>
+                    </div>`;
             const yearElement = document.createElement("div");
-            yearElement.id = `${ozoneMagazineData.year}`;
-            yearElement.className = "yearMag";
+            yearElement.id = `${ozoneMagazineData.magazineEdition}`;
+            yearElement.className = "magazine";
             yearElement.innerHTML = ``;
             yearElement.innerHTML = `
-                <div class="yearMagTitle"><h3>${ozoneMagazineData.year}</h3></div>
+                <div class="magazineEdition"><h3>${ozoneMagazineData.magazineEdition.replace("-", " ")}</h3></div>
                 </div>`;
             yearElement.appendChild(yearMagazine);
             
         contentDiv.appendChild(yearElement);
         });
-    }
+    };
 }
